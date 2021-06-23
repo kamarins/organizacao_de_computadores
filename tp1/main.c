@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include "define.h"
 #include "instrucoes.h"
 
 int main(){
-    Memoria *memoria = NULL;
-    
+    Memoria* memoria = NULL;
     memoria = montarRam();
     menu (memoria);
     liberarMemoria(memoria);

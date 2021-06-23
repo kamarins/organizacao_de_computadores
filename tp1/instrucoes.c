@@ -27,10 +27,6 @@ void liberarMemoria(Memoria* memoria){
     free(memoria);
 }
 
-int* retornarRam(Memoria* memoria){
-  return memoria->memoriaDados;
-}
-
 //intrucoes da maquina
 void maquina(Memoria *memoria){
 
@@ -303,6 +299,8 @@ void divisao(Memoria* memoria, int dividendo, int divisor){
     maquina(memoria);
 }
 
+
+//operacoes matematicas avançadas
 void potencia(Memoria* memoria, int base, int potencia){
 
     int r = base;
@@ -331,7 +329,7 @@ void potencia(Memoria* memoria, int base, int potencia){
         }  
     }
 
-    memoria->memoriaInstrucoes[1][0] = opcodeLevarMem;                                          t
+    memoria->memoriaInstrucoes[1][0] = opcodeLevarMem;                                          
     memoria->memoriaInstrucoes[1][1] = r;
     memoria->memoriaInstrucoes[1][2] = 1;
     memoria->memoriaInstrucoes[1][3] = opcodeSair; 
@@ -347,7 +345,7 @@ void potencia(Memoria* memoria, int base, int potencia){
 
 void porcentagem(Memoria* memoria, int primeiroValor, int segundoValor){
     
-    int aux1, aux2, aux3;
+    int aux1, aux2;
     int cem=100;
 
     multiplicacao(memoria, primeiroValor, segundoValor);
@@ -378,44 +376,18 @@ void porcentagem(Memoria* memoria, int primeiroValor, int segundoValor){
     maquina(memoria);
     aux2 = memoria->memoriaInstrucoes[0][1];  
 
-    printf("\n Você inseriu %d e descontou %d por cento, sendo %d o valor referente a porcentagem",primeiroValor, segundoValor, aux2); 
+    printf("\n Você inseriu %d e descontou %d por cento, sendo %d o valor referente a porcentagem.\n",primeiroValor, segundoValor, aux2); 
     
-    Subtracao(memoria, primeiroValor, aux2);
-    memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
-    memoria->memoriaInstrucoes[0][1] = -1; 
-    memoria->memoriaInstrucoes[0][2] = 2; 
-    memoria->memoriaInstrucoes[0][3] = opcodeSair;
-   
-    memoria->memoriaInstrucoes[1][0] = opcodeSair;    //Halt
-    memoria->memoriaInstrucoes[1][1] = opcodeSair;
-    memoria->memoriaInstrucoes[1][2] = opcodeSair;
-    memoria->memoriaInstrucoes[1][3] = opcodeSair;
-
-    maquina(memoria);
-    aux3 = memoria->memoriaInstrucoes[0][1];
-
-    memoria->memoriaInstrucoes[1][0] = opcodeLevarMem;                                        
-    memoria->memoriaInstrucoes[1][1] = aux3;
-    memoria->memoriaInstrucoes[1][2] = 1;
-    memoria->memoriaInstrucoes[1][3] = opcodeSair; 
-
-    memoria->memoriaInstrucoes[1][0] = opcodeSair;    //Halt
-    memoria->memoriaInstrucoes[1][1] = opcodeSair;
-    memoria->memoriaInstrucoes[1][2] = opcodeSair;
-    memoria->memoriaInstrucoes[1][3] = opcodeSair;
-
-    maquina(memoria); 
-
+    subtracao(memoria, primeiroValor, aux2);
 }
 
-//operacoes matematicas avançadas
 void delta(Memoria* memoria, int a, int b ,int c){
     //b² - 4ac
-    int constante = -4;
+    int num = -4;
     int aux1, aux2, aux3;
-    int resultado;
+   // int resultado;
 
-    potencia(memoria, b, 2);
+    multiplicacao(memoria, b, b);
 
     memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
     memoria->memoriaInstrucoes[0][1] = -1; 
@@ -430,8 +402,9 @@ void delta(Memoria* memoria, int a, int b ,int c){
     maquina(memoria);
 
     aux1=memoria->memoriaInstrucoes[0][1];
+    printf("aux1= %d\n", aux1);
 
-    multiplicacao(memoria, constante, a);
+    multiplicacao(memoria, num, a);
 
     memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
     memoria->memoriaInstrucoes[0][1] = -1; 
@@ -446,8 +419,9 @@ void delta(Memoria* memoria, int a, int b ,int c){
     maquina(memoria);
 
     aux2=memoria->memoriaInstrucoes[0][1];
+    printf("aux2= %d\n", aux2);
 
-    multiplicacao(memoria, constante, a);
+    multiplicacao(memoria, aux2, c);
 
     memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
     memoria->memoriaInstrucoes[0][1] = -1; 
@@ -462,20 +436,10 @@ void delta(Memoria* memoria, int a, int b ,int c){
     maquina(memoria);
 
     aux3=memoria->memoriaInstrucoes[0][1];
+    printf("aux3= %d\n", aux3);
 
-    resultado = aux1+aux3;
-
-    memoria->memoriaInstrucoes[1][0] = opcodeLevarMem;                                        
-    memoria->memoriaInstrucoes[1][1] = resultado;
-    memoria->memoriaInstrucoes[1][2] = 1;
-    memoria->memoriaInstrucoes[1][3] = opcodeSair; 
-
-    memoria->memoriaInstrucoes[1][0] = opcodeSair;    //Halt
-    memoria->memoriaInstrucoes[1][1] = opcodeSair;
-    memoria->memoriaInstrucoes[1][2] = opcodeSair;
-    memoria->memoriaInstrucoes[1][3] = opcodeSair;
-
-    maquina(memoria); 
+    adicao(memoria, aux1,aux3);
+    
 
 
 }
@@ -559,8 +523,7 @@ void volumeCubo(Memoria* memoria, int a){
 void volumePiramide(Memoria* memoria, int abase, int altura){
     
     int aux1;
-    int aux2;
-    int constante=3;
+   
 
     multiplicacao(memoria,abase,altura);
 
@@ -578,33 +541,7 @@ void volumePiramide(Memoria* memoria, int abase, int altura){
 
     aux1 = memoria->memoriaInstrucoes[0][1];
 
-    Divisao(memoria, aux1, constante);
-
-    memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
-    memoria->memoriaInstrucoes[0][1] = -1; 
-    memoria->memoriaInstrucoes[0][2] = 3; 
-    memoria->memoriaInstrucoes[0][3] = opcodeSair;
-   
-    memoria->memoriaInstrucoes[1][0] = opcodeSair;    //Halt
-    memoria->memoriaInstrucoes[1][1] = opcodeSair;
-    memoria->memoriaInstrucoes[1][2] = opcodeSair;
-    memoria->memoriaInstrucoes[1][3] = opcodeSair;
-
-    maquina(memoria);
-
-    aux2 = memoria->memoriaInstrucoes[0][1];
-
-    memoria->memoriaInstrucoes[1][0] = opcodeLevarMem;                                        
-    memoria->memoriaInstrucoes[1][1] = aux2;
-    memoria->memoriaInstrucoes[1][2] = 1;
-    memoria->memoriaInstrucoes[1][3] = opcodeSair; 
-
-    memoria->memoriaInstrucoes[1][0] = opcodeSair;    //Halt
-    memoria->memoriaInstrucoes[1][1] = opcodeSair;
-    memoria->memoriaInstrucoes[1][2] = opcodeSair;
-    memoria->memoriaInstrucoes[1][3] = opcodeSair;
-
-    maquina(memoria); 
+    divisao(memoria, aux1, 3);
 
 }
 
@@ -631,7 +568,7 @@ void areaTriangulo(Memoria* memoria, int base, int altura){
 
     aux = memoria->memoriaInstrucoes[0][1];
 
-    Divisao(memoria, aux, constante);
+    divisao(memoria, aux, constante);
 }
 
 void areaQuadrado(Memoria* memoria, int n){
@@ -695,50 +632,12 @@ void PA(Memoria* memoria,  int primeiroValor, int segundoValor, int terceiroValo
     printf("\n");
 }
 
-void PG(Memoria* memoria, int primeiroValor, int segundoValor, int razao){
-    
-    int aux1;
-    int aux2;
-
-    subtracao(memoria, primeiroValor, 1);
-     
-    memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
-    memoria->memoriaInstrucoes[0][1] = -1; 
-    memoria->memoriaInstrucoes[0][2] = 2; 
-    memoria->memoriaInstrucoes[0][3] = opcodeSair;
-
-    memoria->memoriaInstrucoes[1][0] = opcodeSair;    //Halt
-    memoria->memoriaInstrucoes[1][1] = opcodeSair;
-    memoria->memoriaInstrucoes[1][2] = opcodeSair;
-    memoria->memoriaInstrucoes[1][3] = opcodeSair;
-
-    maquina(memoria);
-    aux1 = memoria->memoriaInstrucoes[0][1];
-  
-    potencia(memoria, razao, aux1);
-     
-    memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
-    memoria->memoriaInstrucoes[0][1] = -1; 
-    memoria->memoriaInstrucoes[0][2] = 1; 
-    memoria->memoriaInstrucoes[0][3] = opcodeSair;
-
-    memoria->memoriaInstrucoes[1][0] = opcodeSair;    //Halt
-    memoria->memoriaInstrucoes[1][1] = opcodeSair;
-    memoria->memoriaInstrucoes[1][2] = opcodeSair;
-    memoria->memoriaInstrucoes[1][3] = opcodeSair;
-
-    maquina(memoria);
-    aux2 = memoria->memoriaInstrucoes[0][1];
-
-    multiplicacao(memoria, segundoValor, aux1);
-}
-
 void fatorial(Memoria* memoria, int n){
     int aux1 = n;
     int aux2 = 1;
 
     for(int i = 0; i < n; i++){
-        Multiplicacao(memoria, aux2, aux1);
+        multiplicacao(memoria, aux2, aux1);
 
         memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
         memoria->memoriaInstrucoes[0][1] = -1; 
@@ -762,115 +661,9 @@ void permutacaoSimples(Memoria* memoria, int n){
 
 }
 
-void combinacao(Memoria* memoria, int primeiroValor, int segundoValor){
-
-    int aux1,aux2,aux3,aux4,aux5,aux6;    
-
-    permutacaoSimples(memoria, primeiroValor); // n!
-    memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
-    memoria->memoriaInstrucoes[0][1] = -1; 
-    memoria->memoriaInstrucoes[0][2] = 1; 
-    memoria->memoriaInstrucoes[0][3] = opcodeSair;
-   
-    memoria->memoriaInstrucoes[1][0] = opcodeSair;    //Halt
-    memoria->memoriaInstrucoes[1][1] = opcodeSair;
-    memoria->memoriaInstrucoes[1][2] = opcodeSair;
-    memoria->memoriaInstrucoes[1][3] = opcodeSair;
-
-    maquina(memoria);
-    aux1 = memoria->memoriaInstrucoes[0][1];    
-
-    permutacaoSimples(memoria, segundoValor); // p!
-    memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
-    memoria->memoriaInstrucoes[0][1] = -1; 
-    memoria->memoriaInstrucoes[0][2] = 1; 
-    memoria->memoriaInstrucoes[0][3] = opcodeSair;
-   
-    memoria->memoriaInstrucoes[1][0] = opcodeSair;    //Halt
-    memoria->memoriaInstrucoes[1][1] = opcodeSair;
-    memoria->memoriaInstrucoes[1][2] = opcodeSair;
-    memoria->memoriaInstrucoes[1][3] = opcodeSair;
-
-    maquina(memoria);
-    aux2 = memoria->memoriaInstrucoes[0][1];    
-
-    subtracao(memoria, primeiroValor, segundoValor); // n - p
-    memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
-    memoria->memoriaInstrucoes[0][1] = -1; 
-    memoria->memoriaInstrucoes[0][2] = 1; 
-    memoria->memoriaInstrucoes[0][3] = opcodeSair;
-   
-    memoria->memoriaInstrucoes[1][0] = opcodeSair;    //Halt
-    memoria->memoriaInstrucoes[1][1] = opcodeSair;
-    memoria->memoriaInstrucoes[1][2] = opcodeSair;
-    memoria->memoriaInstrucoes[1][3] = opcodeSair;
-
-    maquina(memoria);
-    aux3 = memoria->memoriaInstrucoes[0][1];    
-
-    permutacaoSimples(memoria, aux3); // (n - p) !
-    memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
-    memoria->memoriaInstrucoes[0][1] = -1; 
-    memoria->memoriaInstrucoes[0][2] = 1; 
-    memoria->memoriaInstrucoes[0][3] = opcodeSair;
-   
-    memoria->memoriaInstrucoes[1][0] = opcodeSair;    //Halt
-    memoria->memoriaInstrucoes[1][1] = opcodeSair;
-    memoria->memoriaInstrucoes[1][2] = opcodeSair;
-    memoria->memoriaInstrucoes[1][3] = opcodeSair;
-
-    maquina(memoria);
-    aux4 = memoria->memoriaInstrucoes[0][1];    
-
-    
-    multiplicacao(memoria, aux2, aux4); // p! * (n - p) !
-    memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
-    memoria->memoriaInstrucoes[0][1] = -1; 
-    memoria->memoriaInstrucoes[0][2] = 1; 
-    memoria->memoriaInstrucoes[0][3] = opcodeSair;
-   
-    memoria->memoriaInstrucoes[1][0] = opcodeSair;    //Halt
-    memoria->memoriaInstrucoes[1][1] = opcodeSair;
-    memoria->memoriaInstrucoes[1][2] = opcodeSair;
-    memoria->memoriaInstrucoes[1][3] = opcodeSair;
-
-    maquina(memoria);
-    aux5 = memoria->memoriaInstrucoes[0][1];    
-
-   
-    divisao(memoria, aux1, aux5 ); // n! /  p! * (n - p) ! 
-    memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
-    memoria->memoriaInstrucoes[0][1] = -1; 
-    memoria->memoriaInstrucoes[0][2] = 3; 
-    memoria->memoriaInstrucoes[0][3] = opcodeSair;
-   
-    memoria->memoriaInstrucoes[1][0] = opcodeSair;    //Halt
-    memoria->memoriaInstrucoes[1][1] = opcodeSair;
-    memoria->memoriaInstrucoes[1][2] = opcodeSair;
-    memoria->memoriaInstrucoes[1][3] = opcodeSair;
-
-    maquina(memoria);
-    aux6 = memoria->memoriaInstrucoes[0][1];    
-
-    memoria->memoriaInstrucoes[1][0] = opcodeLevarMem;                                        
-    memoria->memoriaInstrucoes[1][1] = aux6;
-    memoria->memoriaInstrucoes[1][2] = 1;
-    memoria->memoriaInstrucoes[1][3] = opcodeSair; 
-
-    memoria->memoriaInstrucoes[1][0] = opcodeSair;    //Halt
-    memoria->memoriaInstrucoes[1][1] = opcodeSair;
-    memoria->memoriaInstrucoes[1][2] = opcodeSair;
-    memoria->memoriaInstrucoes[1][3] = opcodeSair;
-
-    maquina(memoria); 
-
-    //printf(" Você digitou %d como número de elementos e %d como número natural e a sua combinação é %d\n",primeiro_valor, segundo_valor, var_aux6);
-
-}
-
 void arranjo(Memoria* memoria, int primeiroValor, int segundoValor){
     
-    int aux1,aux2,aux3,aux4,aux5,aux6;    
+    int aux1,aux2,aux3;    
 
     permutacaoSimples(memoria, primeiroValor); // n!
     memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
@@ -915,33 +708,8 @@ void arranjo(Memoria* memoria, int primeiroValor, int segundoValor){
     aux3 = memoria->memoriaInstrucoes[0][1];    
 
    
-    divisao(memoria, aux1, aux5 ); // n! /  p! * (n - p) ! 
-    memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
-    memoria->memoriaInstrucoes[0][1] = -1; 
-    memoria->memoriaInstrucoes[0][2] = 3; 
-    memoria->memoriaInstrucoes[0][3] = opcodeSair;
-   
-    memoria->memoriaInstrucoes[1][0] = opcodeSair;    //Halt
-    memoria->memoriaInstrucoes[1][1] = opcodeSair;
-    memoria->memoriaInstrucoes[1][2] = opcodeSair;
-    memoria->memoriaInstrucoes[1][3] = opcodeSair;
+    divisao(memoria, aux1, aux3 ); // n! /  p! * (n - p) ! 
 
-    maquina(memoria);
-    aux4 = memoria->memoriaInstrucoes[0][1];    
-
-    memoria->memoriaInstrucoes[1][0] = opcodeLevarMem;                                        
-    memoria->memoriaInstrucoes[1][1] = aux4;
-    memoria->memoriaInstrucoes[1][2] = 1;
-    memoria->memoriaInstrucoes[1][3] = opcodeSair; 
-
-    memoria->memoriaInstrucoes[1][0] = opcodeSair;    //Halt
-    memoria->memoriaInstrucoes[1][1] = opcodeSair;
-    memoria->memoriaInstrucoes[1][2] = opcodeSair;
-    memoria->memoriaInstrucoes[1][3] = opcodeSair;
-
-    maquina(memoria); 
-
-//printf(" Você digitou %d como número de elementos e %d como número natural e a sua combinação é %d\n",primeiro_valor, segundo_valor, var_aux4);
 }
 
 void fibonnaci(Memoria* memoria, int n){
@@ -1059,7 +827,7 @@ void velocidadeMedia(Memoria* memoria, int dist1, int dist2, int t1, int t2){
    
 }
 
-void acelaracao(Memoria* memoria, int v1, int v2, int t1, int t2){
+void aceleracao(Memoria* memoria, int v1, int v2, int t1, int t2){
     int aux1, aux2;
 
     subtracao(memoria,v1,v2);
@@ -1158,20 +926,20 @@ void convM_Cm(Memoria* memoria, int n){
     multiplicacao(memoria, n,100);
 }
 
-void KelvinCelsius(Memoria* memoria, int n){
+void CelsiusKelvin(Memoria* memoria, int n){
+     // k = c + 273
+    adicao(memoria, n, 273);
     
+}
+
+void KelvinCelsius(Memoria* memoria, int n){
     subtracao(memoria, n,273);
 }
 
-void CelsiusKelvin(Memoria* memoria, int n){
-    Adicao(memoria, n, 273);
-}
-
 void CelsiusFahrenheit(Memoria* memoria, int n){
-    float constante = 2; //aproximado
     int aux;
 
-    multiplicacao(memoria, n, 2);
+    multiplicacao(memoria, n,2);
 
     memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
     memoria->memoriaInstrucoes[0][1] = -1; 
@@ -1190,7 +958,6 @@ void CelsiusFahrenheit(Memoria* memoria, int n){
 }
 
 void FahrenheitCelsius(Memoria* memoria, int n){
-    float constante = 2; //aproximado
     int aux;
 
     subtracao(memoria, n, 32);

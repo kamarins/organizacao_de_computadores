@@ -7,7 +7,6 @@ typedef struct memoria Memoria;
 Memoria* montarRam();
 
 void liberarMemoria(Memoria* memoria);
-int* retornarRam(Memoria* memoria);
 
 void maquina(Memoria* memoria);
 
@@ -16,6 +15,9 @@ void menu(Memoria* memoria);
 void programaAleatorio(Memoria* memoria);
 
 void matBasica(Memoria* memoria);
+void matAvanc(Memoria* memoria);
+void fisica(Memoria* memoria);
+void convMedidas(Memoria* memoria);
 void adicao(Memoria* memoria, int primeiroValor, int segundoValor );
 void subtracao(Memoria* memoria, int primeiroValor, int segundoValor);
 void multiplicacao(Memoria* memoria, int primeiroValor, int segundoValor );
@@ -36,17 +38,15 @@ void perimetroQuadrado(Memoria* memoria, int lado);
 void perimetroRetangulo(Memoria* memoria, int primeiroValor, int segundoValor);
 
 void PA(Memoria* memoria,  int primeiroValor, int segundoValor, int terceiroValor);
-void PG(Memoria* memoria, int primeiroValor, int segundoValor, int razao);
 void fatorial(Memoria* memoria, int n);
 void permutacaoSimples(Memoria* memoria, int n);
-void combinacao(Memoria* memoria, int primeiroValor, int segundoValor);
 void arranjo(Memoria* memoria, int primeiroValor, int segundoValor);
 void fibonnaci(Memoria* memoria, int n);
 void IMC(Memoria* memoria, int peso, int altura);
 
 void distanciaPercorrida(Memoria* memoria, int primeiroValor, int segundoValor);
 void velocidadeMedia(Memoria* memoria, int dist1, int dist2, int t1, int t2);
-void acelaracao(Memoria* memoria, int v1, int v2, int t1, int t2);
+void aceleracao(Memoria* memoria, int v1, int v2, int t1, int t2);
 void forca(Memoria* memoria, int primeiroValor, int segundoValor);
 void calorimetria(Memoria* memoria,  int primeiroValor, int segundoValor, int terceiroValor);
 
