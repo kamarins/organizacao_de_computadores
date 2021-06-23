@@ -657,7 +657,7 @@ void fisica(Memoria* memoria){
 
     do{
          printf("\n ______________________________________________________________________________________________________________");
-        printf("\n |                             Para Matematica Basica temos as seguintes operações:                             |");
+        printf("\n |                                   Para Fisica temos as seguintes operações:                                  |");
         printf("\n |-1: Voltar      0: Dist. Percorrida     1: Vel. Media       2: Aceleracao      3: Forca     4:Calorimetria    |");
         printf("\n |______________________________________________________________________________________________________________|");
         printf("\n  Digite a opção desejada: ");
