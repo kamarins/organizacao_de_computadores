@@ -18,7 +18,7 @@ void menu(Memoria *memoria){
         printf(" \n |         MENU DE OPCOES         |");
         printf(" \n |-1 -> Sair                      |");
         printf(" \n | 0 -> Matematica Basica         |");
-        printf(" \n | 1 -> Matemarica Avancada       |");
+        printf(" \n | 1 -> Matematica Avancada       |");
         printf(" \n | 2 -> Fisica                    |");
         printf(" \n | 3 -> Conversor de medidas      |");
          printf("\n |________________________________|");
@@ -71,11 +71,12 @@ void matBasica(Memoria* memoria){
     do{ 
         printf("\n ______________________________________________________________________________________");
         printf("\n |                     Para Matematica Basica temos as seguintes operações:            |");
-        printf("\n |-1: Voltar      0: Adição      1: Subtracao       2: Multiplicac      3: Divisao     |");
+        printf("\n |-1: Voltar      0: Adição      1: Subtracao       2: Multiplicacao    3: Divisao     |");
         printf("\n |_____________________________________________________________________________________|");
-        printf("\n  Digite a opção desejada: ");
+        printf("\n Digite a opção desejada: ");
         scanf("%d", &opcao);
         getchar();
+
         if(opcao< -1 || opcao >3){
             printf(" \n Você digitou uma opção inválida, digite novamente! \n");
             matBasica(memoria);
@@ -90,6 +91,7 @@ void matBasica(Memoria* memoria){
                 int aux;
                 printf(" Digite 1 caso queira fazer outro tipo de operação. Caso não queira, digite 0: ");
                 scanf("%d", &aux);
+                getchar();
                 if(aux==1){
                     menu(memoria);
                 }else{
@@ -97,7 +99,7 @@ void matBasica(Memoria* memoria){
                     break;
                 }
             }
-        break;
+            break;
 
         case 0: //adicao
             printf("\n\t**VOCE SELECIONOU A OPCAO ADICAO**\n\t ");
@@ -122,7 +124,7 @@ void matBasica(Memoria* memoria){
             
             printf("\n\n\tSomando %d com %d obtém-se %d\t\n\n", n1, n2, resultado);
             matBasica(memoria);
-        break;
+            break;
 
         case 1 : //subtracao
             printf("\n\t**VOCE SELECIONOU A OPCAO SUBTRACAO**\n\t ");
@@ -147,7 +149,7 @@ void matBasica(Memoria* memoria){
 
             printf("\n\n\tSubtraindo %d de %d obtém-se %d\t\n\n", n2, n1, resultado);
             matBasica(memoria);
-        break;
+            break;
 
         case 2: //multiplicacao
             printf("\n\t**VOCE SELECIONOU A OPCAO MULTIPLICACAO**\n\t ");
@@ -155,7 +157,7 @@ void matBasica(Memoria* memoria){
             scanf("%d", &n1);
             printf("\n Gentileza, digitar o segundo valor: ");
             scanf("%d", &n2);
-
+            
             multiplicacao(memoria, n1, n2);
 
             memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
@@ -173,7 +175,7 @@ void matBasica(Memoria* memoria){
             
             printf("\n\n\tMultiplicando %d com %d obtém-se %d\t\n\n", n1, n2, resultado);
             matBasica(memoria);  
-        break;
+            break;
 
         case 3: //divisao
             printf("\n\t**VOCE SELECIONOU A OPCAO DIVISAO**\n\t ");
@@ -198,7 +200,7 @@ void matBasica(Memoria* memoria){
 
             printf("\n\n\tDividindo %d por %d obtém-se %d\t\n\n", n1, n2, resultado);
             matBasica(memoria);          
-        break;
+            break;
     }
 }
 
@@ -224,6 +226,7 @@ void matAvanc(Memoria* memoria){
         printf("\n Digite a opção desejada: ");
         scanf("%d", &opcao);
         getchar();
+
         if(opcao < -1 || opcao > 17){
             printf(" \n Você digitou uma opção inválida, digite novamente! \n");
             matAvanc(memoria);
@@ -244,7 +247,7 @@ void matAvanc(Memoria* memoria){
                     break;
                 }
             }
-        break;
+            break;
 
         case 0:
             printf(" Digite um número: ");
@@ -268,7 +271,7 @@ void matAvanc(Memoria* memoria){
 
             printf(" Você inseriu o número %d e o elevou a %d potência, sendo %d o resultado da operação.\t\n\n", n1, n2, resultado);     
             matAvanc(memoria);
-        break;
+            break;
 
         case 1:
             printf(" Digite o valor: ");
@@ -292,7 +295,7 @@ void matAvanc(Memoria* memoria){
 
             printf(" Portanto, obteve como resposta: %d", resultado);
             matAvanc(memoria);      
-        break;
+            break;
 
         case 2:
             printf(" Digite o valor de a: ");
@@ -318,7 +321,7 @@ void matAvanc(Memoria* memoria){
 
             printf("\n\tDelta = %d\n\t", resultado);     
             matAvanc(memoria);
-        break;
+            break;
 
         case 3:
             printf("Digite o comprimento:  ");
@@ -344,7 +347,7 @@ void matAvanc(Memoria* memoria){
     
             printf("Você inseriu comprimento = %d, a altura %d e largura = %d, o resultado da operação é: %d\t\n\n", n1, n2,n3, resultado);
             matAvanc(memoria); 
-        break;
+            break;
         
         case 4:
             printf(" \nDigite o valor da area da base: ");
@@ -368,7 +371,7 @@ void matAvanc(Memoria* memoria){
 
             printf("\n Voce digitou %d como area da base e %d como altura. Portanto, obteve como %d u.v.\n", n1,n2,resultado);
             matAvanc(memoria);      
-        break;
+            break;
         
         case 5:
             printf("\n Digite o valor do raio:  ");
@@ -390,7 +393,7 @@ void matAvanc(Memoria* memoria){
 
             printf("\n Voce digitou %d como raio da esfera e obteve %d u.v como volume.\n",n1, resultado);
             matAvanc(memoria);      
-        break;
+            break;
 
         case 6:
             printf("\n Digite o valor do lado:  ");
@@ -412,7 +415,7 @@ void matAvanc(Memoria* memoria){
 
             printf("\n Voce digitou %d como lado do cubo e obteve %d u.v como volume.\n",n1, resultado);
             matAvanc(memoria);      
-        break;
+            break;
 
         case 7:
             printf("\n Digite o valor da area da base: ");
@@ -435,7 +438,7 @@ void matAvanc(Memoria* memoria){
 
             printf("\n Voce digitou %d como area da base e %d como altura, obtendo %d u.v como volume.\n",n1,n2,resultado);
             matAvanc(memoria);      
-        break;
+            break;
 
         case 8:
             printf("\n Digite a base: ");
@@ -459,7 +462,7 @@ void matAvanc(Memoria* memoria){
 
             printf("\n Você inseriu a base = %d e altura = %d, o resultado da operação é: %d\t\n\n", n1, n2,  resultado);
             matAvanc(memoria); 
-        break;
+            break;
 
         case 9:
             printf("\n Digite o valor do lado do quadrado: ");
@@ -481,7 +484,7 @@ void matAvanc(Memoria* memoria){
 
             printf("\n Você inseriu o lado = %d e o resultado da operação é: %d\t\n\n", n1, resultado);
             matAvanc(memoria);      
-        break;
+            break;
 
         case 10:
             printf("\n Digite o valor de um dos lados do quadrado:  ");
@@ -503,7 +506,7 @@ void matAvanc(Memoria* memoria){
 
             printf(" \n Você inseriu o lado = %d e o resultado da operação é: %d\t\n\n", n1, resultado);
             matAvanc(memoria);      
-        break;
+            break;
 
 
         case 11:
@@ -528,7 +531,7 @@ void matAvanc(Memoria* memoria){
 
             printf(" Você inseriu o lado = %d e o lado = %d, logo o resultado da operação é: %d\t\n\n", n1, n2, resultado);
             matAvanc(memoria);      
-        break;
+            break;
 
 
         case 12:
@@ -541,7 +544,7 @@ void matAvanc(Memoria* memoria){
 
             PA(memoria, n1, n2, n3);  
             matAvanc(memoria);      
-        break;
+            break;
     
         case 13:
             printf(" Digite o valor:  \t");
@@ -562,7 +565,7 @@ void matAvanc(Memoria* memoria){
             
             printf(" O fatorial de %d é %d\n", n1, resultado);     
             matAvanc(memoria);      
-        break; 
+            break; 
 
         case 14:
             printf(" Digite o valor:  \t");
@@ -583,7 +586,7 @@ void matAvanc(Memoria* memoria){
 
             printf(" A Permutação de %d é %d\n", n1, resultado);     
             matAvanc(memoria);      
-        break;
+            break;
 
 
         case 15:
@@ -608,7 +611,7 @@ void matAvanc(Memoria* memoria){
             
             printf("\nO resultado do seu arranjo é: %d", resultado);
             matAvanc(memoria);   
-        break;
+            break;
 
         
 
@@ -617,7 +620,7 @@ void matAvanc(Memoria* memoria){
             scanf("%d", &n1);  
             fibonnaci(memoria, n1);   
             matAvanc(memoria);      
-        break;  
+            break;  
 
         case 17:
             printf(" Digite o peso:  \t");
@@ -641,8 +644,8 @@ void matAvanc(Memoria* memoria){
 
             printf(" Você inseriu o peso = %d e altura = %d, o resultado da operação é: %d\t\n\n", n1, n2,  resultado);
             matAvanc(memoria);
-        break;
-        }
+            break;
+    }
 }
 
 void fisica(Memoria* memoria){
@@ -661,9 +664,9 @@ void fisica(Memoria* memoria){
         printf("\n |-1: Voltar      0: Dist. Percorrida     1: Vel. Media       2: Aceleracao      3: Forca     4:Calorimetria    |");
         printf("\n |______________________________________________________________________________________________________________|");
         printf("\n  Digite a opção desejada: ");
-        scanf("%d", &opcao);
-        
+        scanf("%d", &opcao); 
         getchar();
+
         if(opcao < -1 || opcao > 5){
             printf(" \n Você digitou uma opção inválida, digite novamente! \n");
             matAvanc(memoria);
@@ -678,6 +681,7 @@ void fisica(Memoria* memoria){
                 int op;
                 printf("Digite 1 caso queira fazer outro tipo de operação. Caso não queira, digite 0: ");
                 scanf("%d", &op);
+
                 if(op==1){
                     menu(memoria);
                 }else{
@@ -693,7 +697,7 @@ void fisica(Memoria* memoria){
             scanf("%d", &n1); 
             printf("\n Digite o valor do tempo em segundos:  ");
             scanf("%d", &n2);  
-           
+    
             distanciaPercorrida(memoria,n1, n2); 
             memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
             memoria->memoriaInstrucoes[0][1] = -1; 
@@ -709,8 +713,8 @@ void fisica(Memoria* memoria){
             resultado = memoria->memoriaInstrucoes[0][1];   
 
             printf(" Você inseriu %d como velocidade e %d como tempo, o resultado da operação é: %d\t\n\n",n1,n2,resultado);
-            fisica(memoria)   ;       
-        break;
+            fisica(memoria);       
+            break;
 
         case 1: 
           
@@ -739,10 +743,10 @@ void fisica(Memoria* memoria){
             resultado = memoria->memoriaInstrucoes[0][1]; 
                 
             printf("\n Você inseriu %d como distância final, %d como distância inicial e inseriu %d como tempo final e %d como tempo inicial, sendo esse o resultado da operação: %d\t\n\n", n1, n2, n3,n4, resultado);
-            fisica(memoria) ;         
+            fisica(memoria);         
             break;
 
-        case 3:
+        case 2:
             printf("\n Digite a velocidade final: ");
             scanf("%d", &n1);
             printf("\n Digite a velocidade inicial: ");
@@ -750,7 +754,7 @@ void fisica(Memoria* memoria){
             printf("\n Digite o tempo final:  ");
             scanf("%d", &n3);
             printf("\n Digite o tempo inicial:  ");
-            scanf("%d", &n3);    
+            scanf("%d", &n4);    
 
             aceleracao(memoria, n1, n2, n3, n4); 
             
@@ -769,10 +773,10 @@ void fisica(Memoria* memoria){
             
               
             printf("\n Você inseriu %d como velocidade final, %d como velocidade inicial e inseriu %d como tempo final e %d como tempo inicial, sendo esse o resultado da operação: %d\n\n", n1, n2, n3, n4,  resultado);
-            fisica(memoria)  ;         
-        break;
+            fisica(memoria);         
+            break;
 
-        case 4:
+        case 3:
             printf("\n Digite o valor da massa:  ");
             scanf("%d", &n1);
             printf("\n Digite o valor da aceleração:  ");
@@ -794,16 +798,15 @@ void fisica(Memoria* memoria){
 
             printf(" Você inseriu a massa = %d, a aceleração = %d e o resultado da operação é: %d\n\n", n1, n2, resultado);    
             fisica(memoria);   
-        break;
+            break;
 
-        case 5:
+        case 4:
             printf("\n Digite o valor da massa:  \t");
             scanf("%d", &n1);
             printf("\n Digite o calor específico:  \t");
             scanf("%d", &n2);
             printf("\n Digite a temperatura:  \t");
             scanf("%d", &n3);
-
             calorimetria(memoria, n1, n2, n3); 
             memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
             memoria->memoriaInstrucoes[0][1] = -1; 
@@ -819,8 +822,8 @@ void fisica(Memoria* memoria){
             resultado = memoria->memoriaInstrucoes[0][1]; 
 
             printf(" Você inseriu a massa = %d, o calor específica = %d, a temperatura = %d e o resultado da operação é: %d\n\n", n1, n2, n3, resultado);    
-            fisica(memoria) ;  
-        break;
+            fisica(memoria);  
+            break;
     }       
 
 
@@ -838,26 +841,29 @@ void convMedidas(Memoria* memoria){
         printf("\n |                        Para Conversão de Medidas temos as seguintes operações:                             |");
         printf("\n |-1: Voltar                                                                                                  |");     
         printf("\n |0: Conv. Seg/Min           1: Conv. Min/Seg               2: Conv. Min/Hr          3: Conv Hr/min           |");
-        printf("\n |4: Conv. Hr/Seg            5: Conv. Cm/M                  6: Conv. M/Cm            7: Conv Kelvin/Celsius   |");
-        printf("\n |8: Conv. Celsius/Kelvin    9: Conv. Celsius/Fahrenheit    10:Conv. Fahrenheit/Celsius                       |");
+        printf("\n |4: Conv. Hr/Seg            5: Conv. Cm/M                  6: Conv Kelvin/Celsius                            |");
+        printf("\n |7: Conv. Celsius/Kelvin    8: Conv. Celsius/Fahrenheit    9:Conv. Fahrenheit/Celsius                       |");
         printf("\n |____________________________________________________________________________________________________________|\n");
         
         printf("\n Digite a opção desejada: ");
         scanf("%d", &opcao);
         getchar();
-        if(opcao < -1 || opcao > 17){
+
+        if(opcao < -1 || opcao > 9){
             printf(" \n Você digitou uma opção inválida, digite novamente! \n");
-            matAvanc(memoria);
+            convMedidas(memoria);
         }
-    }while (opcao < -1 || opcao > 17);
+    }while (opcao < -1 || opcao > 9);
  
-     switch (opcao) { 
+    switch (opcao) { 
         case -1:
             if(opcao == -1){
                 printf("\n Você saiu!\n\n");
                 int aux;
-                printf(" Digite 1 caso queira fazer outro tipo de operação. Caso não queira, digite 0: \t");
+                printf(" Digite 1 caso queira fazer outro tipo de operação. Caso não queira, digite 0: ");
                 scanf("%d", &aux);
+               
+
                 if(aux==1){
                     menu(memoria);
                 }else{
@@ -865,11 +871,11 @@ void convMedidas(Memoria* memoria){
                     break;
                 }
             }
-        break;
+            break;
 
         case 0:
             printf("\n Digite a quantidade de segundos: ");
-            scanf("%d", &n1);  
+            scanf("%d", &n1); 
             convSegMin(memoria,n1);
 
             memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
@@ -888,7 +894,7 @@ void convMedidas(Memoria* memoria){
             printf("\n Você digitou %d minutos e seu resultado em segundos é: %d \n", n1, resultado);
             convMedidas(memoria);
            
-        break;
+            break;
 
         case 1:
             printf("\n Digite a quantidade de minutos: ");
@@ -910,14 +916,13 @@ void convMedidas(Memoria* memoria){
 
             printf("\n Você digitou %d minutos e seu resultado em segundos é: %d \n", n1, resultado);
             convMedidas(memoria);
-           
-        break;
+            break;
 
-        case 2 :
+        case 2:
 
             printf("\n Digite a quantidade de minutos:  ");
             scanf("%d", &n1);  
-
+          
             convMinHr(memoria, n1);
             
             memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
@@ -935,12 +940,13 @@ void convMedidas(Memoria* memoria){
 
             printf("\n Você digitou %d minutos e seu resultado em horas é: %d \n", n1, resultado); 
             convMedidas(memoria);
-        break;
+            break;
 
         case 3:
            
             printf("\n Digite a quantidade de horas: ");
-            scanf("%d", &n1);  
+            scanf("%d", &n1); 
+            
             convHrMin(memoria, n1);
 
             memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
@@ -958,13 +964,13 @@ void convMedidas(Memoria* memoria){
             
             printf("\n Você digitou %d horas e seu resultado em minutos é: %d \n", n1, resultado);
             convMedidas(memoria);; 
-        break;
+            break;
 
         case 4:
-            
-            
+        
             printf("\n Digite a quantidade de horas:  ");
-            scanf("%d", &n1);  
+            scanf("%d", &n1); 
+            
             convHrSeg(memoria, n1);
 
             memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
@@ -982,12 +988,11 @@ void convMedidas(Memoria* memoria){
 
             printf("\n Você digitou %d horas e seu resultado em segundos é: %d \n", n1, resultado);
             convMedidas(memoria); 
-        break;
+            break;
 
         case 5:
             printf("\n Digite a quantidade de centímetros:  ");
             scanf("%d", &n1); 
-
             convCm_M(memoria, n1);
             memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
             memoria->memoriaInstrucoes[0][1] = -1; 
@@ -1004,36 +1009,13 @@ void convMedidas(Memoria* memoria){
 
             
             printf("\n Você digitou %d centímetros e seu resultado em metros é: %d \n", n1, resultado);
-            convMedidas(memoria);;
-        break;           
+            convMedidas(memoria);
+            break;           
 
         case 6:
-
-            printf("\n Digite a quantidade de metros:  ");
-            scanf("%d", &n1);  
-
-            convM_Cm(memoria, n1);
-            memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
-            memoria->memoriaInstrucoes[0][1] = -1; 
-            memoria->memoriaInstrucoes[0][2] = 1; 
-            memoria->memoriaInstrucoes[0][3] = opcodeSair;
-        
-            memoria->memoriaInstrucoes[1][0] = opcodeSair;    //Halt
-            memoria->memoriaInstrucoes[1][1] = opcodeSair;
-            memoria->memoriaInstrucoes[1][2] = opcodeSair;
-            memoria->memoriaInstrucoes[1][3] = opcodeSair;
-
-            maquina(memoria);
-            resultado = memoria->memoriaInstrucoes[0][1];
-
-            printf("\n Você digitou %d metros e seu resultado em centímetros é: %d \n", n1, resultado);
-            convMedidas(memoria);;
-        break;
- 
-
-        case 7:
             printf("\n Digite o valor de graus em Kelvin:  ");
-            scanf("%d", &n1);  
+            scanf("%d", &n1); 
+            
             KelvinCelsius(memoria, n1); 
 
             memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
@@ -1050,12 +1032,13 @@ void convMedidas(Memoria* memoria){
             resultado = memoria->memoriaInstrucoes[0][1];
    
             printf("\n Você inseriu %d graus em Kelvin e isso equivale a %d graus em Celsius \n\n", n1, resultado);
-            convMedidas(memoria);; 
-        break;
+            convMedidas(memoria);
+            break;
 
-        case 8:
+        case 7:
             printf("\n Digite o valor de graus em Celsius:  ");
-            scanf("%d", &n1);  
+            scanf("%d", &n1);
+              
             CelsiusKelvin(memoria, n1); 
 
             memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
@@ -1072,12 +1055,13 @@ void convMedidas(Memoria* memoria){
             resultado = memoria->memoriaInstrucoes[0][1];
    
             printf("\n Você inseriu %d graus em Celsius e isso equivale a %d graus em Kelvin \n\n", n1, resultado);
-            convMedidas(memoria);; ;; 
-        break;
+            convMedidas(memoria); 
+            break;
 
-        case 9:
+        case 8:
             printf("\n Digite o valor de graus em Celsius: ");
-            scanf("%d", &n1);  
+            scanf("%d", &n1); 
+           
             CelsiusFahrenheit(memoria, n1); 
 
             memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
@@ -1094,12 +1078,13 @@ void convMedidas(Memoria* memoria){
             resultado = memoria->memoriaInstrucoes[0][1];
    
             printf("\n Você inseriu %d graus em Celsius e isso equivale a %d graus em Fahreinht \n\n", n1, resultado);
-            convMedidas(memoria);; ;; 
-        break;
+            convMedidas(memoria);
+            break;
 
-        case 10:
+        case 9:
             printf("\n Digite o valor de graus em Fahreinht: ");
             scanf("%d", &n1);  
+            
             FahrenheitCelsius(memoria, n1); 
 
             memoria->memoriaInstrucoes[0][0] = opcodeTrazerMem;   
@@ -1117,7 +1102,7 @@ void convMedidas(Memoria* memoria){
    
             printf(" \nVocê inseriu %d graus em Celsius e isso equivale a %d graus em Fahreinht \n\n", n1, resultado);
             convMedidas(memoria);
-        break;
+            break;
 
     }
 

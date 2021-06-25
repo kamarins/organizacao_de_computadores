@@ -25,6 +25,7 @@ Memoria* montarRam(){
 //desaloca a memoria
 void liberarMemoria(Memoria* memoria){
     free(memoria);
+    memoria = NULL;
 }
 
 //intrucoes da maquina
@@ -921,10 +922,6 @@ void convCm_M(Memoria* memoria, int n){
     divisao(memoria, n,100);
 }
 
-void convM_Cm(Memoria* memoria, int n){
-    
-    multiplicacao(memoria, n,100);
-}
 
 void CelsiusKelvin(Memoria* memoria, int n){
      // k = c + 273

@@ -56,7 +56,6 @@ void convMinHr(Memoria* memoria, int n);
 void convHrMin(Memoria* memoria, int n);
 void convHrSeg(Memoria* memoria, int n);
 void convCm_M(Memoria* memoria, int n);
-void convM_Cm(Memoria* memoria, int n);
 void KelvinCelsius(Memoria* memoria, int n);
 void CelsiusKelvin(Memoria* memoria, int n);
 void CelsiusFahrenheit(Memoria* memoria, int n);
