@@ -3,7 +3,7 @@
 struct endereco{
    int endereco_bloco;
    int endereco_palavra;
-};
+}; 
 
 Endereco *Criar_Endereco(int endereco_bloco, int endereco_palavra){
     

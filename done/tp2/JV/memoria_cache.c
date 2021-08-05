@@ -1,6 +1,6 @@
 #include "memoria_cache.h"
 #include "bloco_de_memoria.h"
-#include "define.h"
+#include "define.h" 
 
 struct cache{
    int tamanho_cache;
