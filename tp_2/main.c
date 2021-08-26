@@ -10,13 +10,14 @@
 
 int main(){
     
-    clock_t tempo;   // teste  
+    clock_t tempo;
 
     blocoMemoria **RAM = criaMemoriaRAM();
     blocoMemoria **cache1 = criaMemoriaCache(tamanhoCache01);
     blocoMemoria **cache2 = criaMemoriaCache(tamanhoCache02);
     blocoMemoria **cache3 = criaMemoriaCache(tamanhoCache03);
    
+   //imprimeR(RAM, tamanhoRam);
 
     tempo = clock(); //aloca tempo inicial 
 

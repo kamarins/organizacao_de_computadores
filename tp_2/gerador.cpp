@@ -10,11 +10,11 @@
 #define op_min 0 //Intervalo de OPCODES -> menor OPCODE
 #define op_max 1 //maior OPCODE
 #define hault -1 //OPCODE que representa o final do seu programa -> A ultima instrucao do ultimo FOR contera' esse OPCODE.
-#define TAM_FOR 30 //Tamanho dos blocos de instrucoes.
+#define TAM_FOR 50 //Tamanho dos blocos de instrucoes.
 
-#define REPETICOES 75 /* (0 <= REPETICOES <= 100) Porcentagem que representa a quantidade de blocos de FOR repetidos dentro do NUM_INS.-> O mesmo bloco (FOR) aparecera' "REPETICOES(%)" da quantidade total de blocos (FORs), nao necessariamente em sequencia.*/
+#define REPETICOES 25 /* (0 <= REPETICOES <= 100) Porcentagem que representa a quantidade de blocos de FOR repetidos dentro do NUM_INS.-> O mesmo bloco (FOR) aparecera' "REPETICOES(%)" da quantidade total de blocos (FORs), nao necessariamente em sequencia.*/
 
-#define TAM_MEM 100 //Tamanho da RAM
+#define TAM_MEM 1000 //Tamanho da RAM
 #define NUM_INS 1000 //Quantidade de instrucoes -> Maior que o TAM_FOR (vide item 2 das observacoes).
 #define QUANTIDADE_DE_ENDERECOS 3 //Numero de enderecos na memoria RAM sobre os quais seu OPCODE (unico por linha) ira' atuar.
 #define ENDERECO_DE_PALAVRAS 1
@@ -30,7 +30,7 @@ int main(){
 
 void geraInstrucao(){
 	ofstream instrucoes;
-	instrucoes.open("instrucoes.txt");
+	instrucoes.open("instrucoes1.txt");
 	vector< vector<int> > vetor;
 	vetor.clear();
 	vector<int> aux;

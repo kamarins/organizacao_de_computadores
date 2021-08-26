@@ -15,7 +15,7 @@ blocoMemoria **criaMemoriaRAM(){
 
 blocoMemoria **criaMemoriaCache(int tamanho){
   
-    blocoMemoria **bloco = malloc(tamanho * sizeof(blocoMemoria));
+    blocoMemoria **bloco = (blocoMemoria**) malloc(tamanho * sizeof(blocoMemoria*));
 
     for (int i = 0; i < tamanho; i++){
         bloco[i] = criablocoMemoriaCache();
@@ -26,7 +26,7 @@ blocoMemoria **criaMemoriaCache(int tamanho){
 
 blocoMemoria *criablocoMemoriaCache(){
     
-    blocoMemoria *bloco = malloc(sizeof(blocoMemoria));
+    blocoMemoria *bloco = (blocoMemoria*)malloc(sizeof(blocoMemoria));
     srand(time(NULL));
     for(int i = 0; i < 4; i++){
 	    bloco->palavra[i] = rand() % 100;
@@ -38,7 +38,10 @@ blocoMemoria *criablocoMemoriaCache(){
     
     return bloco;
 }
-
+void limpaBlocoMemoria(blocoMemoria *bloco){
+    bloco->end->endBloco = -1;
+    bloco->atualizado = false;
+}
 
 blocoMemoria *criablocoMemoriaRAM(){
     blocoMemoria *bloco = malloc(sizeof(blocoMemoria));

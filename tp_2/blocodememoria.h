@@ -21,6 +21,8 @@ blocoMemoria **criaMemoriaRAM();
 
 blocoMemoria **criaMemoriaCache(int tamanho);
 
+void limpaBlocoMemoria(blocoMemoria *bloco);
+
 blocoMemoria *criablocoMemoriaCache();
 
 blocoMemoria *criablocoMemoriaRAM();

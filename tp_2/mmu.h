@@ -12,6 +12,7 @@
 #include "endereco.h"
 
 int procuraPosicao(blocoMemoria **cache, Endereco *end, int tamanho);
+void imprimeR(blocoMemoria **cache, int tamanho);
 void transfereBloco(blocoMemoria *blocoDestino, blocoMemoria *blocoOrigem);
 void trocaBloco(int posicaoDestino, int posicaoOrigem, blocoMemoria **blocoDestino, blocoMemoria **blocoOrigem);
 int LFU(blocoMemoria **cache, int tamanho);

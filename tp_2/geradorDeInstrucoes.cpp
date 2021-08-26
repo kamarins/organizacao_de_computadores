@@ -23,8 +23,8 @@
 /*-> O mesmo bloco (FOR) aparecera' "REPETICOES(%)" da quantidade total de blocos (FORs), nao necessariamente
 em sequencia.
 */
-#define TAM_MEM 1000 //Tamanho da RAM
-#define NUM_INS 104 //Quantidade de instrucoes -> Maior que o TAM_FOR (vide item 2 das observacoes).
+#define TAM_MEM 50 //Tamanho da RAM
+#define NUM_INS 51 //Quantidade de instrucoes -> Maior que o TAM_FOR (vide item 2 das observacoes).
 
 #define QUANTIDADE_DE_ENDERECOS 3 //Numero de enderecos na memoria RAM sobre os quais seu OPCODE (unico por linha) ira' atuar.
 
