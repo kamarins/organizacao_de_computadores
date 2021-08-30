@@ -6,7 +6,7 @@ void maquina(blocoMemoria **cache1, blocoMemoria **cache2, blocoMemoria **cache3
     int endereco2 = 0;
     int resultado = 0;
     int PC = 0;
-    long int miss[5], hit[5], custo[5],
+    long int miss[4], hit[4], custo[4],
             custoC1 = 0, custoC2 = 0, custoC3 = 0, custoRam = 0, 
             hitTotal = 0, missTotal = 0,
             custoTotal = 0, hitRAM = 0,

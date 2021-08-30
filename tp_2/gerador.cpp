@@ -10,9 +10,9 @@
 #define op_min 0 //Intervalo de OPCODES -> menor OPCODE
 #define op_max 1 //maior OPCODE
 #define hault -1 //OPCODE que representa o final do seu programa -> A ultima instrucao do ultimo FOR contera' esse OPCODE.
-#define TAM_FOR 50 //Tamanho dos blocos de instrucoes.
+#define TAM_FOR 50//Tamanho dos blocos de instrucoes.
 
-#define REPETICOES 25 /* (0 <= REPETICOES <= 100) Porcentagem que representa a quantidade de blocos de FOR repetidos dentro do NUM_INS.-> O mesmo bloco (FOR) aparecera' "REPETICOES(%)" da quantidade total de blocos (FORs), nao necessariamente em sequencia.*/
+#define REPETICOES 75 /* (0 <= REPETICOES <= 100) Porcentagem que representa a quantidade de blocos de FOR repetidos dentro do NUM_INS.-> O mesmo bloco (FOR) aparecera' "REPETICOES(%)" da quantidade total de blocos (FORs), nao necessariamente em sequencia.*/
 
 #define TAM_MEM 1000 //Tamanho da RAM
 #define NUM_INS 1000 //Quantidade de instrucoes -> Maior que o TAM_FOR (vide item 2 das observacoes).

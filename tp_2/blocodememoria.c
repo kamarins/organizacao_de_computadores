@@ -38,8 +38,28 @@ blocoMemoria *criablocoMemoriaCache(){
     
     return bloco;
 }
+
+//funcao para preencher um arquivo binario que sera lido pelo hd
+//nao sei onde vou colocar isso nao
+void preencheHD(int tamanho){
+    FILE *hd = fopen("HD.bin", "wb");
+    int palavra;
+
+    if(hd == NULL) printf("ERRO AO ABRIR O AQUIVO.\n");
+
+    for (int i = 0; i < tamanho; i++){
+        palavra = rand()%1000;
+        fwrite(&palavra, sizeof(int), 1, hd);
+    }
+    
+    fclose(hd);
+}
+
+
 void limpaBlocoMemoria(blocoMemoria *bloco){
     bloco->end->endBloco = -1;
+    time_t t = time(NULL);
+    bloco->tempo = time(&t);
     bloco->atualizado = false;
 }
 

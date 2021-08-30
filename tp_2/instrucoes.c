@@ -16,7 +16,7 @@ Instrucoes* criainstrucoes(int opcode, Endereco* add1, Endereco* add2, Endereco*
 
 Instrucoes **PreencherInstrucoes (){
 
-    FILE *arquivo = fopen ("instrucoes1.txt", "r");
+    FILE *arquivo = fopen ("instrucoes.txt", "r");
 
     int opcode,
         endBloco1,

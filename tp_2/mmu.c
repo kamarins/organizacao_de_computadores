@@ -11,11 +11,11 @@ int procuraPosicao(blocoMemoria **cache, Endereco *end, int tamanho){
     return -1;
 }
 
-void imprimeR(blocoMemoria **cache, int tamanho){
-    for (int i = 0; i < tamanho; i++){
-        printf("end = %d\n", cache[i]->end->endBloco);
-    }
-}
+// void imprimeR(blocoMemoria **cache, int tamanho){
+//     for (int i = 0; i < tamanho; i++){
+//         printf("end = %d\n", cache[i]->end->endBloco);
+//     }
+// }
 
 int procuraPosicaoVazia(blocoMemoria **cache, int tamanho){
     int vazio;
@@ -49,6 +49,7 @@ void trocaBloco(int posicaoDestino, int posicaoOrigem, blocoMemoria **blocoDesti
     transfereBloco(aux, blocoDestino[posicaoDestino]);
     transfereBloco(blocoDestino[posicaoDestino], blocoOrigem[posicaoOrigem]);
     transfereBloco(blocoOrigem[posicaoOrigem], aux);
+
     free(aux->end);
     free(aux);
 }
@@ -73,16 +74,13 @@ blocoMemoria *MMU(blocoMemoria **cache1, blocoMemoria **cache2, blocoMemoria **c
     int posicaoCache1, posicaoCache2, posicaoCache3, posicaoRAM;
 
     posicaoCache1 = procuraPosicao(cache1, end, tamanhoCache01);
-    printf("procurando cache1 %d\n", end->endBloco);
     if (posicaoCache1 != -1){ 
         
         setHit(hit, 1);
         setCusto(custo, 1, 10);
-        printf("fim cache1\n");
         return cache1[posicaoCache1];
     }
     else{
-        printf("procurando cache2\n");
         posicaoCache2 = procuraPosicao(cache2, end, tamanhoCache02);
         
         if (posicaoCache2 != -1){
@@ -96,7 +94,6 @@ blocoMemoria *MMU(blocoMemoria **cache1, blocoMemoria **cache2, blocoMemoria **c
             }
             else{
                 posicaoCache1 = LFU(cache1, tamanhoCache01); //procura a posicao com o maior tempo
-
                 trocaBloco(posicaoCache1, posicaoCache2, cache1, cache2);
             }
 
@@ -104,11 +101,9 @@ blocoMemoria *MMU(blocoMemoria **cache1, blocoMemoria **cache2, blocoMemoria **c
             setMiss(miss,1);
             setCusto(custo, 2, 30);
             
-            printf("fim cache2\n");
             return cache1[posicaoCache1];
         }
         else{
-            printf("procurando cache3\n");
             posicaoCache3 = procuraPosicao(cache3, end, tamanhoCache03);
 
             if (posicaoCache3 != -1){
@@ -141,56 +136,47 @@ blocoMemoria *MMU(blocoMemoria **cache1, blocoMemoria **cache2, blocoMemoria **c
                 setMiss(miss, 1);
                 setMiss(miss, 2);
                 setCusto(custo, 3, 130);
-                printf("fim cache3\n");
                 return cache1[posicaoCache1];
             }
             else{
-                printf("procurando RAM\n");
                 posicaoRAM = procuraPosicao(RAM, end, tamanhoRam);
-                printf("%d posicao ram\n", posicaoRAM);
                 posicaoCache3 = procuraPosicaoVazia(cache3, tamanhoCache03);
                 
                 if (posicaoCache3 != -1){
-                    printf("posicao vazia cache3\n");
                     transfereBloco(cache3[posicaoCache3], RAM[posicaoRAM]);
                 }
                 else{
                     posicaoCache3 = LFU(cache3, tamanhoCache03);
-                    printf("posicao nao vazia cache3\n");
+                   
                     if(isAtualizado(cache3[posicaoCache3])){
-                        printf("entrei no is atualizado\n");
+                        
                         int posicaoRam2 = procuraPosicao(RAM, cache3[posicaoCache3]->end, tamanhoRam);
-                        transfereBloco(RAM[posicaoRam2], cache3[posicaoCache3]);
+                        trocaBloco(posicaoRam2,posicaoCache3,RAM, cache3);
+                        cache3[posicaoCache3]->atualizado = false;
                     }
                     transfereBloco(cache3[posicaoCache3], RAM[posicaoRAM]);
-                    cache3[posicaoCache3]->atualizado = false;
                 }
     
                 posicaoCache2 = procuraPosicaoVazia(cache2, tamanhoCache02);
 
                 if (posicaoCache2 != -1){
-                    printf("posicao vazia cache2\n");
                     transfereBloco(cache2[posicaoCache2], cache3[posicaoCache3]);
                     limpaBlocoMemoria(cache3[posicaoCache3]);
                 }
                 else{
                     posicaoCache2 = LFU(cache2, tamanhoCache02);
-                    printf("posicao n vazia cache2\n");
                     trocaBloco(posicaoCache2, posicaoCache3, cache2, cache3);
                 }
                 
                 posicaoCache1 = procuraPosicaoVazia(cache1, tamanhoCache01);
 
                 if (posicaoCache1 != -1){
-                    printf("posicao vazia cache1\n");
                     transfereBloco(cache1[posicaoCache1], cache2[posicaoCache2]);
                     limpaBlocoMemoria(cache2[posicaoCache2]);
                 }
                 else{
                     posicaoCache1 = LFU(cache1, tamanhoCache01);
-                    printf("posicao n vazia cache1 - %d\n", posicaoCache1);
                     trocaBloco(posicaoCache1, posicaoCache2, cache1, cache2);
-                    printf("funciona\n");
                 }
 
                 setHit(hit, 0);
@@ -198,7 +184,7 @@ blocoMemoria *MMU(blocoMemoria **cache1, blocoMemoria **cache2, blocoMemoria **c
                 setMiss(miss, 2);
                 setMiss(miss, 3);
                 setCusto(custo, 0, 1130);
-                printf("fim ram\n");
+
                 return cache1[posicaoCache1];
             }
         }
